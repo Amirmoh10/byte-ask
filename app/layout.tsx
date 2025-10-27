@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 
 import "./globals.css";
 
@@ -12,8 +13,6 @@ export const metadata: Metadata = {
     "Byte Ask is a comprehensive Q&A platform for developers. Ask coding questions, share knowledge, and get expert answers from the programming community. Find solutions to your development challenges across all programming languages and technologies.",
 };
 
-console.log({ className: inter.className });
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -24,7 +23,14 @@ export default function RootLayout({
       <body
         className={`${inter.className} ${spaceGrotesk.className} antialiased`}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
